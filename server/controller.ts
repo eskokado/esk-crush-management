@@ -26,7 +26,7 @@ class Controller {
       .catch(err => res.status(400).json({'result': err}))
   }
 
-  // selectOne
+  // deleteOne
   deleteCrushById(id) {
     return model.deleteOne(id)
   }
@@ -37,6 +37,21 @@ class Controller {
       .then(crush => res.status(200).json({'result': crush}))
       .catch(err => res.status(400).json({'result': err}))
   }
+
+  // updateOne
+  updateCrushById(id, data) {
+    return model.findOneAndUpdate(id, data)
+  }
+
+  updateOne(req, res) {
+    const id = { id: req.params.id }
+    const crush = req.body;
+
+    this.updateCrushById(id, crush)
+      .then(crush => res.status(200).json({'result': crush}))
+      .catch(err => res.status(400).json({'result': err}))
+  }
+
 
 }
 
