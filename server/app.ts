@@ -35,6 +35,8 @@ class App {
       .delete((req, res) => this.controller.deleteOne(req, res))
     this.app.route('/api/crushs/:id')
       .put((req, res) => this.controller.updateOne(req, res))
+    this.app.route('/api/crushs')
+      .post((req, res) => this.controller.insert(req, res))
   }
 
 }

@@ -16,11 +16,11 @@ class Controller {
 
   // selectOne
   getCrushById(id) {
-    return model.find(id)
+    return model.findOneAndUpdate(id)
   }
 
   selectOne(req, res) {
-    const id = { id: req.params.id }
+    const id = { _id: req.params.id }
     this.getCrushById(id)
       .then(crush => res.status(200).json({'result': crush}))
       .catch(err => res.status(400).json({'result': err}))
@@ -28,11 +28,11 @@ class Controller {
 
   // deleteOne
   deleteCrushById(id) {
-    return model.deleteOne(id)
+    return model.findOneAndDelete(id)
   }
 
   deleteOne(req, res) {
-    const id = { id: req.params.id }
+    const id = { _id: req.params.id }
     this.deleteCrushById(id)
       .then(crush => res.status(200).json({'result': crush}))
       .catch(err => res.status(400).json({'result': err}))
@@ -40,11 +40,11 @@ class Controller {
 
   // updateOne
   updateCrushById(id, data) {
-    return model.findOneAndUpdate(id, data)
+    return model.findOneAndUpdate(id, data )
   }
 
   updateOne(req, res) {
-    const id = { id: req.params.id }
+    const id = { _id: req.params.id }
     const crush = req.body;
 
     this.updateCrushById(id, crush)
@@ -52,7 +52,18 @@ class Controller {
       .catch(err => res.status(400).json({'result': err}))
   }
 
+  // insert
+  insertCrush(data) {
+    return model.create(data)
+  }
 
+  insert(req, res) {
+    const crush = req.body;
+
+    this.insertCrush(crush)
+      .then(crush => res.status(201).json({'result': crush}))
+      .catch(err => res.status(400).json({'result': err}))
+  }
 }
 
 export default Controller

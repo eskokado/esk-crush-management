@@ -8,7 +8,7 @@ class DataBase {
   constructor() {}
 
   createConnection() {
-    mongoose.connect(this.dbUrl)    
+    mongoose.connect(this.dbUrl, { useNewUrlParser: true })    
     this.logger(this.dbUrl)
   }
 
