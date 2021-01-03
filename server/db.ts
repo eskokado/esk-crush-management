@@ -2,7 +2,7 @@ import * as mongoose from 'mongoose'
 
 class DataBase {
 
-  private dbUrl = 'mongodb://127.0.0.1/db-esk-crush-api'
+  private dbUrl = 'mongodb://localhost:27017/db-esk-crush-api'
   private dbConnection;
 
   constructor() {}
