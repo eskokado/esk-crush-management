@@ -24,6 +24,8 @@ class App {
       .get((req, res) => this.controller.select(req, res))
     this.app.route('/api/crushs/:id')
       .get((req, res) => this.controller.selectOne(req, res))
+    this.app.route('/api/crushs/:id')
+      .delete((req, res) => this.controller.deleteOne(req, res))
   }
 
 }
